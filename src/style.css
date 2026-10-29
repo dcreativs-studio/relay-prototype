@@ -120,7 +120,15 @@ main > header{position:sticky;top:0;z-index:15}
 /* Compact inbox and search header. */
 .inbox-topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
 .inbox-topbar>strong{font-family:Manrope,sans-serif;font-size:21px;font-weight:800;letter-spacing:-.6px;white-space:nowrap;color:#205f47}
-.inbox-header-search{display:flex;align-items:center;gap:9px;background:#f0f5f1;border:1px solid #e3ebe5;border-radius:999px;padding:10px 14px;max-width:340px;flex:1;color:#879b8c}
+.inbox-header-search{display:flex;align-items:center;gap:8px;background:#f0f5f1;border:1px solid #e3ebe5;border-radius:999px;padding:0 12px;width:100px;max-width:340px;min-height:40px;flex:0 1 auto;color:#879b8c;transition:width .28s cubic-bezier(.22,1,.36,1),background-color .2s,border-color .2s,box-shadow .2s;min-width:0}
+.inbox-header-search.expanded{width:340px;background:#fff;border-color:#a7c4b2;box-shadow:0 0 0 3px #205f4709}
+.inbox-header-search>svg{flex-shrink:0}
+.inbox-header-search button{border:0;background:transparent;color:#587d66;padding:0;min-height:36px;flex-shrink:0}
+.inbox-header-search .search-trigger{width:100%;justify-content:center;gap:7px;font-size:12px}
+.search-trigger i{width:5px;height:5px;border-radius:50%;background:#2d8b60;flex-shrink:0}
+.inbox-header-search .search-submit,.inbox-header-search .search-clear{width:24px;justify-content:center}
+.inbox-header-search button:focus-visible{outline:2px solid #205f47;outline-offset:2px;border-radius:12px}
+@media(prefers-reduced-motion:reduce){.inbox-header-search{transition:none}}
 .inbox-header-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#365a45;font-size:12px}
 .inbox-page .page-heading,.inbox-page footer{display:none}
 .inbox-page .content{padding-top:20px}
@@ -135,7 +143,8 @@ main > header{position:sticky;top:0;z-index:15}
   .inbox-page>header{height:72px;padding:0 17px;border-bottom:1px solid #e7eee8}
   .inbox-topbar{gap:14px}
   .inbox-topbar>strong{font-size:19px}
-  .inbox-header-search{padding:9px 11px;gap:7px}
+  .inbox-header-search{padding:0 10px;gap:5px;width:96px}
+  .inbox-header-search.expanded{width:340px}
   .inbox-header-search input{font-size:16px}
   .inbox-page .content{padding:0 0 calc(104px + env(safe-area-inset-bottom,0px))}
   .inbox-page .inbox{border:0;border-radius:0;background:white}
@@ -148,3 +157,26 @@ main > header{position:sticky;top:0;z-index:15}
   .inbox-page .conversation.chosen{background:white}
   .chat-open .inbox-page .content{padding:0}
 }
+
+/* Reports: sales trend and category share. */
+.reports-charts{display:grid;grid-template-columns:minmax(0,2fr) minmax(290px,1fr);gap:22px;align-items:stretch}
+.reports-charts>.panel{min-width:0}
+.report-performance{display:flex;flex-direction:column}
+.report-performance .chart{flex:1;min-height:260px}
+.report-performance .plot{display:flex;flex-direction:column;min-width:0}
+.report-performance .plot svg{flex:1;min-height:220px;width:100%}
+.category-sales .panel-title{gap:12px}
+.category-demo{font-size:9px;color:#829387;background:#f1f6f1;padding:4px 8px;border-radius:999px}
+.category-doughnut{position:relative;width:200px;max-width:100%;margin:12px auto 18px}
+.category-doughnut svg{display:block;width:100%;height:auto}
+.category-total{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;gap:6px}
+.category-total>span{font-size:10px;color:#819187}
+.category-total strong{font-family:Manrope,sans-serif;font-size:23px;letter-spacing:-.8px;color:#205f47}
+.category-total small{font-size:9px;color:#9aa69e}
+.category-legend{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.category-legend li{display:flex;align-items:center;gap:8px;font-size:11px;color:#74867a}
+.category-legend i{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.category-legend strong{margin-left:auto;font-weight:600;font-size:11px;color:#425e4e;font-variant-numeric:tabular-nums}
+.category-legend small{width:28px;text-align:right;font-size:10px;color:#8b9a90;font-variant-numeric:tabular-nums}
+@media(max-width:1100px){.reports-charts{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.reports-charts{gap:0}.report-performance .chart{min-height:210px}.report-performance .plot svg{min-height:175px}.category-doughnut{width:210px;margin-block:18px 24px}.category-legend{gap:14px}}
